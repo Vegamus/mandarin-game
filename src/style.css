@@ -1,0 +1,416 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Quicksand:wght@300;400;600&display=swap');
+
+:root {
+    /* 🌌 Core Space Palette */
+    --bg-cosmos: #0B0D17;
+    /* Deepest midnight blue */
+    --bg-cosmos-gradient: linear-gradient(135deg, #0B0D17 0%, #1B2735 100%);
+
+    /* 🛸 Neon Accents */
+    --neon-cyan: #00F0FF;
+    /* Primary Actions / Borders */
+    --neon-cyan-glow: 0 0 10px rgba(0, 240, 255, 0.6);
+    /* Glow effect */
+
+    --galactic-green: #39FF14;
+    /* Success / Match Found */
+    --nebula-red: #FF3131;
+    /* Error / Miss / Shake */
+    --star-gold: #FFD700;
+    /* Pinyin / Stars / Points */
+
+    /* 🧊 Glass-Morphism (UI Panels) */
+    --glass-bg: rgba(20, 25, 40, 0.75);
+    /* Semi-transparent dark blue */
+    --glass-border: 1px solid rgba(0, 240, 255, 0.3);
+    --glass-blur: blur(12px);
+
+    /* 🔤 Typography & Text */
+    --text-main: #FFFFFF;
+    --text-muted: #A0AAB5;
+    --font-display: 'Orbitron', sans-serif;
+    /* For headers/numbers */
+    --font-body: 'Quicksand', sans-serif;
+    /* For reading text */
+
+    /* 📐 Spacing & Layout */
+    --radius-panel: 16px;
+    --radius-btn: 50px;
+    /* Pill shape for playful feel */
+    --grid-gap: 1.5rem;
+
+    /* Legacy Compat */
+    --primary-cyan: var(--neon-cyan);
+}
+
+body {
+    background: var(--bg-cosmos-gradient);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+    justify-content: center;
+}
+
+#app {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+    width: 100%;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-display);
+    color: var(--neon-cyan);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: var(--neon-cyan-glow);
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+/* UI ELEMENTS */
+button {
+    background: transparent;
+    border: 1px solid var(--neon-cyan);
+    padding: 0.8em 1.5em;
+    font-size: 1em;
+    font-weight: 700;
+    font-family: var(--font-display);
+    color: var(--neon-cyan);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    border-radius: var(--radius-btn);
+}
+
+.btn-primary {
+    background: transparent;
+    border: 2px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+    box-shadow: var(--neon-cyan-glow);
+    border-radius: var(--radius-btn);
+}
+
+.btn-primary:hover {
+    background: var(--neon-cyan);
+    color: var(--bg-cosmos);
+    /* Invert for contrast */
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.8);
+}
+
+button:disabled {
+    border-color: #555;
+    color: #777;
+    background-color: transparent;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+/* MENU / MISSION CONTROL */
+/* Shared Glass Styles */
+.card,
+.dashboard-panel {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: var(--glass-border);
+    border-radius: var(--radius-panel);
+}
+
+/* MENU / MISSION CONTROL */
+.dashboard-panel {
+    padding: 3rem;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Warp Drive Toggle */
+.level-selector {
+    margin: 2rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.level-selector label {
+    font-family: var(--font-display);
+    color: var(--star-gold);
+}
+
+select {
+    padding: 0.5em;
+    font-family: var(--font-display);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--neon-cyan);
+    border: 1px solid var(--neon-cyan);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Launch Buttons */
+.game-options {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.game-card {
+    background: linear-gradient(180deg, rgba(0, 240, 255, 0.05) 0%, rgba(0, 0, 0, 0.4) 100%);
+    padding: 2rem;
+    border-radius: var(--radius-panel);
+    width: 220px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.2) inset;
+}
+
+.game-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--neon-cyan);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+}
+
+.game-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* MATCH GAME - Gravity Grid */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: var(--grid-gap);
+    width: 100%;
+    max-width: 800px;
+    margin: 2rem auto;
+}
+
+.card {
+    perspective: 1000px;
+    aspect-ratio: 3/4;
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    /* Elastic Bounciness */
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--radius-panel);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    padding: 0.5rem;
+    box-sizing: border-box;
+    user-select: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--glass-bg);
+    backdrop-filter: blur(5px);
+}
+
+.card-back {
+    background: linear-gradient(135deg, #1c1c1c, #2a2a2a);
+    color: var(--neon-cyan);
+    font-size: 2.5rem;
+    border: 1px solid var(--neon-cyan);
+    text-shadow: var(--neon-cyan-glow);
+}
+
+.card-front {
+    background: rgba(255, 255, 255, 0.9);
+    color: #0B0D17;
+    transform: rotateY(180deg);
+    border: 2px solid white;
+}
+
+.card.matched .card-front {
+    border-color: var(--galactic-green);
+    box-shadow: 0 0 25px var(--galactic-green);
+    background: #f0fff4;
+}
+
+/* FLASHCARD - Planetary Analyzer */
+.flashcard-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.flashcard-container {
+    perspective: 1000px;
+    width: 100%;
+    aspect-ratio: 3/2;
+}
+
+.flashcard {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+    cursor: pointer;
+}
+
+.flashcard.flipped {
+    transform: rotateY(180deg);
+}
+
+.flashcard-front,
+.flashcard-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: var(--radius-panel);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--glass-bg);
+    border: 2px solid var(--neon-cyan);
+    box-shadow: 0 0 40px rgba(0, 240, 255, 0.1);
+    backdrop-filter: var(--glass-blur);
+}
+
+.flashcard-back {
+    transform: rotateY(180deg);
+    border-color: var(--star-gold);
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
+}
+
+.hanzi-large {
+    font-size: 6rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.pinyin-large {
+    font-size: 2.5rem;
+    color: var(--star-gold);
+    margin-bottom: 0.5rem;
+    font-family: var(--font-display);
+}
+
+.meaning-large {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--neon-cyan);
+}
+
+.tap-hint {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 1rem;
+}
+
+/* Fuel Gauge */
+.fuel-gauge-container {
+    width: 100%;
+    height: 12px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 1rem;
+    border: 1px solid #444;
+}
+
+.fuel-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--neon-cyan), var(--galactic-green));
+    width: 0%;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 15px var(--neon-cyan);
+}
+
+.controls-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+}
+
+.counter {
+    font-family: var(--font-display);
+    color: var(--neon-cyan);
+    font-size: 1.5rem;
+}
+
+/* Secondary / Exit Btn */
+.secondary-btn {
+    border-color: var(--nebula-red);
+    color: var(--nebula-red);
+    background: rgba(255, 49, 49, 0.1);
+}
+
+.secondary-btn:hover {
+    background: var(--nebula-red);
+    color: white;
+    box-shadow: 0 0 25px var(--nebula-red);
+}
+
+/* Win Overlay */
+.win-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(11, 13, 23, 0.98);
+    padding: 3rem;
+    border-radius: var(--radius-panel);
+    text-align: center;
+    z-index: 100;
+    border: 2px solid var(--galactic-green);
+    box-shadow: 0 0 60px var(--galactic-green);
+    min-width: 320px;
+}
